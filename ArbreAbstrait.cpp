@@ -92,3 +92,58 @@ int NoeudInstRepeter::executer() {
     while (!(m_condition->executer())) m_sequence->executer();
     return 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// NoeudTantque
+////////////////////////////////////////////////////////////////////////////////
+
+NoeudInstTantQue::NoeudInstTantQue(Noeud* condition, Noeud* sequence) 
+: m_condition(condition), m_sequence(sequence) {
+}
+
+int NoeudInstTantQue::executer() {
+    while(m_condition->executer()) m_sequence->executer();
+    return 0; // La valeur renvoyée ne représente rien !
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// NoeudSiRiche
+////////////////////////////////////////////////////////////////////////////////
+
+NoeudInstSiRiche::NoeudInstSiRiche(vector<Noeud*>  conditions,vector<Noeud*>  sequences)
+:m_conditions(conditions),m_sequences(sequences){
+}
+
+int NoeudInstSiRiche::executer() {
+    unsigned i = 0 ;  // Indice pour parcourir le vector
+                            //boolean pour sortir de la boucle
+    bool sortie = false;
+    while(i<m_conditions.size() && !sortie){    // Tant qu'il reste des conditions et qu'aucune n'a était réaliser faire
+        if(m_conditions.at(i) == m_sequences.at(i)){ // si la condition vaut NULL alors c'est un sinon donc faire puis sortir de la boucle
+            m_sequences.at(i)->executer();
+            sortie = true;
+        }
+        if(m_conditions.at(i)->executer()) {         // si la condition est vrai alors faire puis sortir de la boucle
+            m_sequences.at(i)->executer();
+            sortie = true;
+        }
+        i++;
+    }
+
+    return 0;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//NoeudInstPour
+////////////////////////////////////////////////////////////////////////////////
+
+NoeudInstPour::NoeudInstPour(Noeud* condition, Noeud* sequence, Noeud* affectation1, Noeud* affectation2)
+:m_condition(condition),m_sequence(sequence),m_affectation1(affectation1),m_affectation2(affectation2){
+
+}
+
+int NoeudInstPour::executer() {
+    for(m_affectation1 != NULL ? m_affectation1->executer() : 0;m_condition->executer();m_affectation2 != NULL ? m_affectation2->executer() : 0){
+        m_sequence->executer();
+    }
+}
