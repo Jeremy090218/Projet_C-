@@ -94,4 +94,47 @@ private:
     Noeud* m_condition;
 };
 
+class NoeudInstTantQue : public Noeud {
+// Classe pour représenter un noeud "instruction si"
+// et ses 2 fils : la condition du si et la séquence d'intruction associée
+  public:
+      NoeudInstTantQue(Noeud* condition, Noeud* sequence);
+       // Construit une "instruction tanque" avec sa condition et sa séquence d'instruction
+    ~NoeudInstTantQue() {} // A cause du destructeur virtuel de la classe Noeud
+    int executer(); //Exécute l'instruction tantque : tant que la condition est vraie on exécute la séquence
+    
+  private:
+      Noeud* m_condition;
+      Noeud* m_sequence;
+};
+
+class NoeudInstSiRiche : public Noeud {
+// Classe pour représenter un noeud "instruction si avec plusieurs sinonsi et/ou un sinon"
+// et ses filles : vector de plusieurs Si
+    
+  public:
+      NoeudInstSiRiche(vector<Noeud*>  conditions,vector<Noeud*>  sequences);
+        //Construit un tableau "instruction si"
+      ~NoeudInstSiRiche(){} // A cause du destructeur virtuel de la classe Noeud
+      int executer(); //Exécute l'instruction tantque : tant que la condition est vraie on exécute la séquence
+      
+  private:
+      vector<Noeud*>  m_conditions;
+      vector<Noeud*>  m_sequences;
+};
+
+class NoeudInstPour : public Noeud {
+    
+public:
+    NoeudInstPour(Noeud* condition,Noeud* sequence,Noeud* affectation1,Noeud* affectation2);
+    ~NoeudInstPour(){}
+    int executer();
+    
+private:
+    Noeud* m_condition;
+    Noeud* m_sequence;
+    Noeud* m_affectation1;
+    Noeud* m_affectation2;
+};
+
 #endif /* ARBREABSTRAIT_H */
