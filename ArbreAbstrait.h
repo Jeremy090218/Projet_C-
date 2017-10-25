@@ -137,4 +137,17 @@ private:
     Noeud* m_affectation2;
 };
 
+//////////////////////////////////////////////////////////////////////
+class NoeudInstLire : public Noeud {
+    // Classe pour représenter un noeud "lire"
+    // et son nombre de variables filles aléatoire (1..*) 
+public:
+    NoeudInstLire(vector<Noeud*> variables);
+    // Construit une "instruction lire" avec sa liste de variables
+    ~NoeudInstLire() {}
+    int executer(); //Exécute l'instruction lire : affiche la valeur de chaque variable de la liste
+private:
+    vector<Noeud*> m_variables;
+};
+
 #endif /* ARBREABSTRAIT_H */
