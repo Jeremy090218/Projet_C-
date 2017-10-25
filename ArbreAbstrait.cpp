@@ -147,3 +147,18 @@ int NoeudInstPour::executer() {
         m_sequence->executer();
     }
 }
+
+//////////////////////////////////////////////////////////////////
+/// NoeudInstLire
+//////////////////////////////////////////////////////////////////
+
+NoeudInstLire::NoeudInstLire(vector<Noeud*> variables) 
+: m_variables(variables) {
+}
+
+int NoeudInstLire::executer() {
+    for (int i=0; i<m_variables.size(); i++) {
+        cout << ((SymboleValue*) m_variables[i])->getValeur() << endl;
+    }
+    return 0;
+}
