@@ -150,4 +150,16 @@ private:
     vector<Noeud*> m_variables;
 };
 
+///////////////////////////////////////////////////////////////////////
+class NoeudInstEcrire : public Noeud {
+public:
+    NoeudInstEcrire(vector<Noeud*>s);
+    ~NoeudInstEcrire(){}
+    int executer();
+    
+private:
+    vector<Noeud*> m_s;
+};
+
+
 #endif /* ARBREABSTRAIT_H */
