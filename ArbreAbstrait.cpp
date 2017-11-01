@@ -162,3 +162,26 @@ int NoeudInstLire::executer() {
     }
     return 0;
 }
+////////////////////////////////////////////////////////////////////////////////
+//NoeudInstEcrire
+////////////////////////////////////////////////////////////////////////////////
+
+NoeudInstEcrire::NoeudInstEcrire(vector<Noeud*> s)
+:m_s(s){
+    
+}
+int NoeudInstEcrire::executer() {
+    for(unsigned i = 0;i<m_s.size();i++){
+        Noeud* p = m_s.at(i);
+        if(typeid(*p)==typeid(SymboleValue) && *((SymboleValue*)p)== "<CHAINE>"){
+            cout << ((SymboleValue*)p)->getChaine()  << endl;
+        }else{
+            cout << p->executer() << endl;
+        } 
+    }
+
+
+    return 0;
+}
+
+
