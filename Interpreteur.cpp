@@ -246,3 +246,24 @@ Noeud* Interpreteur::instLire() {
     testerEtAvancer(")");
     return new NoeudInstLire(variables);
  }
+//      <instEcrire> ::= ecrire ( <expression> | <chaine> { , <expression> | <chaine> } )
+Noeud* Interpreteur::instEcrire() {
+    testerEtAvancer("ecrire");
+    testerEtAvancer("(");
+    vector<Noeud*> v;
+    do{
+        Noeud* ve;
+        if(m_lecteur.getSymbole() == "<CHAINE>"){
+          ve= new SymboleValue(m_lecteur.getSymbole().getChaine());
+          m_lecteur.avancer();
+        }else{
+          ve = expression();
+        }
+        v.push_back(ve);
+        if(m_lecteur.getSymbole() == ","){
+            testerEtAvancer(",");
+        }
+    }while(m_lecteur.getSymbole() == "<CHAINE>" || m_lecteur.getSymbole() == "<VARIABLE>" );
+    testerEtAvancer(")");
+    return new NoeudInstEcrire(v);
+}
