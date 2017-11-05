@@ -1,0 +1,8 @@
+# Fichier de test Repeter
+
+procedure principale()
+  i = 12+3;
+  repeter
+    i=i+1;
+  jusqua (i==25)
+finproc

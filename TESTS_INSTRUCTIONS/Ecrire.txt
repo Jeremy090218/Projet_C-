@@ -1,0 +1,6 @@
+# Fichier de test Ecrire
+
+procedure principale()
+  i = 12+3;
+  ecrire("bonjour")
+finproc

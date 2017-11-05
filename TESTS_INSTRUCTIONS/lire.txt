@@ -1,0 +1,6 @@
+# Fichier de test Lire
+
+procedure principale()
+  i = 12+3;
+  lire(i)
+finproc
