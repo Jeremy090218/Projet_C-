@@ -1,4 +1,6 @@
 # Fichier de test SiRiche
+# Résultat attendu :
+# j = 3
 
 procedure principale()
   i = 12+3;
