@@ -1,4 +1,6 @@
 # Fichier de test Repeter
+# Résultat attendu :
+# i = 25
 
 procedure principale()
   i = 12+3;
