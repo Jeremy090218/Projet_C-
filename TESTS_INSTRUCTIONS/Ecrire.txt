@@ -1,4 +1,6 @@
 # Fichier de test Ecrire
+# Résultat attendu :
+# bonjour
 
 procedure principale()
   i = 12+3;
